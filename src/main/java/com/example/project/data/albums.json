@@ -1,0 +1,31 @@
+{
+    "caravaggio": {
+        "name": "Caravaggio",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/7/73/Bild-Ottavio_Leoni%2C_Caravaggio.jpg",
+        "paintings": [
+            {
+                "name": "Supper at Emmaus",
+                "place": "Milan",
+                "year": "1606",
+                "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4d/1602-3_Caravaggio%2CSupper_at_Emmaus_National_Gallery%2C_London.jpg"
+            },
+            {
+                "name": "The Toothpuller",
+                "place": "Ghent",
+                "year": "1609",
+                "photo": "https://upload.wikimedia.org/wikipedia/commons/b/be/Toothpuller.jpg"
+        }
+            ]
+    },
+    "giuseppe-molteni": {
+        "name": "Giuseppe Molteni",
+        "paintings": [
+            {
+                "name": "Mother Mourning the Death of her Child",
+                "place": "Milan",
+                "year": "1845",
+                "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Giuseppe_Molteni_-_Mother_Mourning_the_Death_of_her_Child_-_La_derelitta_la_morte_del_bimbo.jpg/800px-Giuseppe_Molteni_-_Mother_Mourning_the_Death_of_her_Child_-_La_derelitta_la_morte_del_bimbo.jpg"
+            }
+        ]
+    }
+}
