@@ -3,6 +3,12 @@ spring:
     view:
       prefix: WEB-INF/jsp/
       suffix: .jsp
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3303
+    username: root
+    password: my-secret-pw
+  jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQLDialect
 
 server.port: 8080
+
 
