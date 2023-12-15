@@ -1,8 +1,8 @@
 package com.example.project;
 
-public record Painting(
+public record PaintingInput(
         String artist,
-        String name,
+        String painting,
         String year,
         String place,
         String photo

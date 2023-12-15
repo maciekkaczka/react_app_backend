@@ -1,16 +1,20 @@
 package com.example.project.db;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
-@RequiredArgsConstructor
+@Data
+@Table(name = "ARTIST")
+@NoArgsConstructor
 public class Artist {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private final String name;
+    private String name;
+    @OneToMany(mappedBy = "artist")
+    private Set<Painting> paintings;
 }
