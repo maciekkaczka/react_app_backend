@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface ArtistRepository extends CrudRepository<Artist, Integer> {
-    Optional<Artist> findByName(String name);
+    Optional<Artist> findByNameIgnoreCase(String name);
 }

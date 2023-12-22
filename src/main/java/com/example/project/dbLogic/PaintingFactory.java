@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class PaintingFactory {
     public Painting createPainting(PaintingInput paintingInput, Artist artist) {
-        return new Painting(
-                paintingInput.painting(),
-                paintingInput.year(),
-                paintingInput.place(),
-                paintingInput.photo(),
-                artist
-        );
+        Painting painting = new Painting();
+        painting.setArtist(artist);
+        painting.setYear(paintingInput.year());
+        painting.setName(paintingInput.painting());
+        painting.setPlace(paintingInput.place());
+        painting.setPhoto(paintingInput.photo());
+        return painting;
     }
 }

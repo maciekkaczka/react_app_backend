@@ -1,18 +1,20 @@
 package com.example.project.db;
 
 import jakarta.persistence.*;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@RequiredArgsConstructor
+@Data
+@NoArgsConstructor
 public class Painting {
-    private final String name;
-    private final String year;
-    private final String place;
-    private final String photo;
+    private String name;
+    private String year;
+    private String place;
+    private String photo;
     @ManyToOne
     @JoinColumn(name = "artist_id")
-    private final Artist artist;
+    private Artist artist;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

@@ -3,10 +3,13 @@ package com.example.project.dbLogic;
 import com.example.project.PaintingInput;
 import com.example.project.db.Artist;
 import com.example.project.db.ArtistRepository;
+import com.example.project.db.Painting;
 import com.example.project.db.PaintingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -20,11 +23,18 @@ public class SqlHelper implements DataModification {
 
     @Override
     public void insertDataToDatabase(PaintingInput paintingInput) {
-        var artistOptional = artistRepository.findByName(paintingInput.artist());
+        var artistOptional = artistRepository.findByNameIgnoreCase(paintingInput.artist());
         artistOptional.ifPresentOrElse(
                 artist -> paintingRepository.save(paintingFactory.createPainting(paintingInput, artist)),
                 () -> insertArtistWithPainting(paintingInput)
         );
+    }
+
+    @Override
+    public List<Painting> getPaintingsByArtist(String artistName) {
+        var artistOptional = artistRepository.findByNameIgnoreCase(artistName);
+        return artistOptional.map(artist -> paintingRepository.findAllByArtistId(artist.getId()))
+                .orElse(null);
     }
 
     private void insertArtistWithPainting(PaintingInput paintingInput) {
