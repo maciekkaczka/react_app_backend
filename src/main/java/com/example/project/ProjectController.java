@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.db.Artist;
 import com.example.project.db.ArtistRepository;
 import com.example.project.db.Painting;
 import com.example.project.db.PaintingRepository;
@@ -23,6 +24,12 @@ public class ProjectController {
     @ResponseBody
     public List<Painting> getArtist(@PathVariable("name") String name) {
         return sqlHelper.getPaintingsByArtist(name);
+    }
+
+    @GetMapping("/getArtists")
+    @ResponseBody
+    public Iterable<Artist> getAllArtists() {
+        return artistRepository.findAll();
     }
 
     @PostMapping("/insert")
