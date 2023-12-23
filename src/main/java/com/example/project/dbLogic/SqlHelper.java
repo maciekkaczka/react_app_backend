@@ -31,6 +31,16 @@ public class SqlHelper implements DataModification {
     }
 
     @Override
+    public void deleteDataFromDatabase(String paintingName) {
+        var painting = paintingRepository.findByNameIgnoreCase(paintingName);
+        var artist = artistRepository.findById(painting.getArtist().getId());
+        paintingRepository.delete(painting);
+        if (paintingRepository.findByArtist(artist.get()).get().isEmpty()) {
+            artistRepository.delete(artist.get());
+        }
+    }
+
+    @Override
     public List<Painting> getPaintingsByArtist(String artistName) {
         var artistOptional = artistRepository.findByNameIgnoreCase(artistName);
         return artistOptional.map(artist -> paintingRepository.findAllByArtistId(artist.getId()))

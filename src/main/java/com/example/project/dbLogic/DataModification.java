@@ -8,5 +8,7 @@ import java.util.List;
 public interface DataModification {
     void insertDataToDatabase(PaintingInput paintingData);
 
+    void deleteDataFromDatabase(String paintingName);
+
     List<Painting> getPaintingsByArtist(String artistName);
 }

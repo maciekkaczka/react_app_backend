@@ -5,7 +5,9 @@ import com.example.project.db.ArtistRepository;
 import com.example.project.db.Painting;
 import com.example.project.db.PaintingRepository;
 import com.example.project.dbLogic.SqlHelper;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +35,14 @@ public class ProjectController {
     }
 
     @PostMapping("/insert")
-    public void insertPainting(@RequestBody PaintingInput data) {
+    public ResponseEntity insertPainting(@RequestBody PaintingInput data) {
         sqlHelper.insertDataToDatabase(data);
+        return ResponseEntity.ok().body("ok");
+    }
+
+    @PostMapping("/deletePainting")
+    public ResponseEntity deletePainting(@RequestBody JSONObject data) {
+        sqlHelper.deleteDataFromDatabase((String) data.get("name"));
+        return ResponseEntity.ok().body("ok");
     }
 }
