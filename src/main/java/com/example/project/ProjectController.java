@@ -30,8 +30,8 @@ public class ProjectController {
 
     @GetMapping("/getArtists")
     @ResponseBody
-    public Iterable<Artist> getAllArtists() {
-        return artistRepository.findAll();
+    public List<Artist> getAllArtists() {
+        return sqlHelper.getAllSortedArtists();
     }
 
     @PostMapping("/insert")

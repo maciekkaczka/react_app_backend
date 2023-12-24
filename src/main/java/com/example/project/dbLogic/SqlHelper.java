@@ -1,5 +1,6 @@
 package com.example.project.dbLogic;
 
+import com.example.project.ArtistComparator;
 import com.example.project.PaintingInput;
 import com.example.project.db.Artist;
 import com.example.project.db.ArtistRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,6 +22,8 @@ public class SqlHelper implements DataModification {
     private PaintingRepository paintingRepository;
     @Autowired
     private PaintingFactory paintingFactory;
+    @Autowired
+    private ArtistComparator comparator;
 
     @Override
     public void insertDataToDatabase(PaintingInput paintingInput) {
@@ -45,6 +49,17 @@ public class SqlHelper implements DataModification {
         var artistOptional = artistRepository.findByNameIgnoreCase(artistName);
         return artistOptional.map(artist -> paintingRepository.findAllByArtistId(artist.getId()))
                 .orElse(null);
+    }
+
+    @Override
+    public List<Artist> getAllSortedArtists() {
+        var artistsIterator = artistRepository.findAll().iterator();
+        List<Artist> list = new ArrayList<>();
+        while (artistsIterator.hasNext()) {
+            list.add(artistsIterator.next());
+        }
+        list.sort(comparator);
+        return list;
     }
 
     private void insertArtistWithPainting(PaintingInput paintingInput) {

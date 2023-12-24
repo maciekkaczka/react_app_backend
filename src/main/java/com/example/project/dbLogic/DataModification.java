@@ -1,6 +1,7 @@
 package com.example.project.dbLogic;
 
 import com.example.project.PaintingInput;
+import com.example.project.db.Artist;
 import com.example.project.db.Painting;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface DataModification {
     void deleteDataFromDatabase(String paintingName);
 
     List<Painting> getPaintingsByArtist(String artistName);
+
+    List<Artist> getAllSortedArtists();
 }
